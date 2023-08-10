@@ -1,0 +1,43 @@
+# Node.js dependencies
+node_modules/
+
+# Compiled binary addons (if any)
+build/
+
+# Dependency lock files
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Development and build artifacts
+*.log
+*.swp
+*.swo
+*.out
+*.tmp
+*.tmp.*
+*.log.*
+*.vscode/
+.idea/
+.DS_Store
+
+# Environment variables and configuration files
+.env
+.env.local
+.env.*.local
+.env.development
+.env.test
+.env.production
+
+# Output directories
+dist/
+build/
+coverage/
+
+# Miscellaneous
+__tests__/
+*.test.js
+*.test.ts
+*.spec.js
+*.spec.ts
