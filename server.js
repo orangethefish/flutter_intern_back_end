@@ -1,4 +1,7 @@
 const express = require('express');
+const cart = require('./src/models/cart');
+const products = require('./src/models/products');
+
 
 // Create an Express app
 const app = express();
@@ -7,7 +10,8 @@ const app = express();
 app.get('/', (req, res) => {
   res.send('Hello, Express!');
 });
-
+app.use('/cart',cart);
+app.use('/products',products);
 // Start the server
 const PORT = 5000;
 app.listen(PORT, () => {
