@@ -4,17 +4,29 @@ const prodList = require('../../miscellaneous/products_list.json');
 const router = express.Router();
 
 
-const validateRouteParam = (req, res, next) => {
-    const routeParam = req.params.category;
+const validateRouteParams = (req, res, next) => {
     const routeParamRegex = /^[a-zA-Z0-9_-]+$/;
-    if (!routeParam.match(routeParamRegex)) {
-      return res.status(400).send('Invalid route parameter!');
+    
+    for (const param in req.params) {
+      if (!req.params[param].match(routeParamRegex)) {
+        return res.status(400).send('Invalid route parameter!');
+      }
     }
+    
     next();
-}
-router.get('/filter/:category', validateRouteParam, async (req, res, next) => {
+};
+router.get('/filter&:category', validateRouteParams, async (req, res, next) => {
     const category = req.params.category;
+    if(category==='All') {
+        res.json(prodList);
+        return;
+    }
     const item = prodList.filter(item => item.prodCategory === category);
+    res.json(item);
+})
+router.get('/find&:id',validateRouteParams, async (req, res, next) => {
+    const id= req.params.id;
+    const item = prodList.filter(item => item.id == id);
     res.json(item);
 })
 router.use((req, res, next) => {
