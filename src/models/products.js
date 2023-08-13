@@ -18,7 +18,7 @@ const validateRouteParams = (req, res, next) => {
 router.get('/filter&:category', validateRouteParams, async (req, res, next) => {
     const category = req.params.category;
     if(category==='All') {
-        res.json(prodList);
+        res.status(201).json(prodList);
         return;
     }
     const item = prodList.filter(item => item.prodCategory === category);
@@ -27,7 +27,7 @@ router.get('/filter&:category', validateRouteParams, async (req, res, next) => {
 router.get('/find&:id',validateRouteParams, async (req, res, next) => {
     const id= req.params.id;
     const item = prodList.filter(item => item.id == id);
-    res.json(item);
+    res.status(201).json(item);
 })
 router.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -36,10 +36,10 @@ router.use((req, res, next) => {
     next();
   });
 router.get('/all', (req, res) => {
-    res.json(prodList);
+    res.status(201).json(prodList);
 })
 router.get('/category', (req, res) => {
     const prodCategory = [... new Set(prodList.map(item => item.prodCategory))];
-    res.json(prodCategory);
+    res.status(201).json(prodCategory);
 })
 module.exports = router;
